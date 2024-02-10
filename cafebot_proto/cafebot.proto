@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package robot;
+
+service Movements {
+    rpc park(Empty) returns (SimpleResponse) {}
+}
+
+message Empty {}
+
+message SimpleResponse {
+    bool success = 1;
+    string message = 2;
+}

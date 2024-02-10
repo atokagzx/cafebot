@@ -1,0 +1,29 @@
+{
+    "default_stand": {
+        "general": {
+            "robot_ip": "10.0.10.225",
+            "retry_attempts": 3
+        },
+        "poses": {
+            "park": {
+                "type": "joint",
+                "values": [0, 0, 0, 0, 0, 0]
+            },
+            "stand": {
+                "type": "cartesian",
+                "position": [360, 0, 250],
+                "orientation": [130, 0, 180]
+            }
+        },
+        "velocities": {
+            "reduced": {
+                "joint": 10,
+                "linear": 50
+            },
+            "normal": {
+                "joint": 100,
+                "linear": 1
+            }
+        }
+    }
+}
