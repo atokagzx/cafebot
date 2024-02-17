@@ -5,14 +5,16 @@
             "retry_attempts": 3
         },
         "poses": {
-            "park": {
+            "stand": {
                 "type": "joint",
                 "values": [0, 0, 0, 0, 0, 0]
             },
-            "stand": {
+            "park": {
                 "type": "cartesian",
                 "position": [360, 0, 250],
-                "orientation": [130, 0, 180]
+                "orientation": [130, 0, 90],
+                "frame": "base",
+                "tcp": "marker"
             }
         },
         "velocities": {

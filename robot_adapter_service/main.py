@@ -19,13 +19,24 @@ class MovementsServicer(pb2_grpc.MovementsServicer):
             RobotAdapter().park()
         except RobotException as e:
             self._logger.error(f"failed to park: {e}")
-            return pb2.SimpleResponse(success=False, message=str(e))
+            raise
         else:
             return pb2.SimpleResponse(success=True, message="ok")
-    
+
+
+    def current_tfs(self, request, context):
+        self._logger.info("getting current tfs")
+        try:
+            tfs = RobotAdapter().get_current_tfs()
+        except RobotException as e:
+            self._logger.error(f"failed to get current tfs: {e}")
+            raise
+        else:
+            return pb2.TFsResponse(tfs=tfs)
+        
 
 if __name__ == '__main__':
-    logging.basicConfig(level=logging.INFO)
+    logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s]%(name)s.%(funcName)s: %(message)s")
     parser = argparse.ArgumentParser()
     parser.add_argument("-a", "--address", type=str, default="[::]:50051")
     args = parser.parse_args()

@@ -21,6 +21,8 @@ class JointPose:
 class CartesianPose:
     position: Tuple[float, float, float]
     orientation: Tuple[float, float, float]
+    frame: str
+    tcp: str
 
     def __post_init__(self):
         assert len(self.position) == 3, "position must have 3 values"
@@ -59,3 +61,30 @@ class Velocities:
         for attr_name in self.__annotations__:
             setattr(self, attr_name, Velocity(**getattr(self, attr_name)))
             
+
+@dataclass
+class TCPOffset:
+    x: float
+    y: float
+    z: float
+    roll: float
+    pitch: float
+    yaw: float
+
+
+    def as_list(self) -> List[float]:
+        return [self.x, self.y, self.z, self.roll, self.pitch, self.yaw]
+
+
+@dataclass
+class BaseOffset:
+    x: float
+    y: float
+    z: float
+    roll: float
+    pitch: float
+    yaw: float
+
+    def as_list(self) -> List[float]:
+        return [self.x, self.y, self.z, self.roll, self.pitch, self.yaw]
+    

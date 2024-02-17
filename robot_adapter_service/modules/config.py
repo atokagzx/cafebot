@@ -19,8 +19,8 @@ class SharedExtConfig(metaclass=Singleton):
             self._logger.warning(f'"STAND_NAME" environment variable not set, using: {_default_stand_name}')
             self._stand_name = _default_stand_name
         self._logger.info(f"stand name: {self._stand_name}")
-        config_file_path = os.path.abspath(os.path.join(os.getcwd(), os.pardir,
-                                                   "config", "ext_config.json"))
+        config_file_path = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)),
+                                                    os.pardir, os.pardir, "config", "ext_config.json"))
         self._logger.info(f'loading config from: {config_file_path}')
         with open(config_file_path, "r") as f:
             config_dict = json.load(f)[self._stand_name]
